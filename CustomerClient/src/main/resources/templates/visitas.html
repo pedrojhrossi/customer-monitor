@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <table th:if="${visitas.code == 200}">
+            <tr>
+                <th>ticketId</th>
+                <th>customerName</th>
+                <th>waitingTime</th>
+            </tr>
+            <tr th:each="visita: ${visitas.visits}" th:style="${visita.flag} ? 'color:red' : ''">
+                <td th:text="${visita.ticketId}"></td>
+                <td th:text="${visita.customerName}"></td>
+                <td th:text="${visita.waitingTime}"></td>
+                <td th:text="${visita.flag}"></td>
+            </tr>
+        </table>
+        <h2 th:unless="${visitas.code == 200}" th:style="'color:red'">ERROR al invocar el servicio</h2>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <table th:if="${colas.code == 200}">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>serviceLevel</th>
+                <th>botonVisita</th>
+            </tr>
+            <tr th:each="cola: ${colas.queues}">
+                <td th:text="${cola.id}"></td>
+                <td th:text="${cola.name}"></td>
+                <td th:text="${cola.serviceLevel}"></td>
+                <td ><a th:href="@{'/visit/'+${cola.id}+'/'+${cola.serviceLevel}}" th:text="Visita"></a></td>
+            </tr>
+        </table>
+        <h2 th:unless="${colas.code == 200}" th:style="'color:red'">ERROR al invocar el servicio</h2>
+        
+    </body>
+</html>
